@@ -1,4 +1,3 @@
-import { RiArrowUpDownFill } from "react-icons/ri";
 import styled from "styled-components";
 import Filter from "./Filter";
 import Cuisines from "./Cuisines";
@@ -29,8 +28,24 @@ const CuisinesContainer = styled.div`
   flex-wrap: wrap;
 `;
 
+const SearchFilterContainer = styled.div`
+  padding: 0px;
+  display: flex;
+  align-items: center;
+`
+
+const SearchFilter = styled.input`
+  font-size: 16px;
+  padding: 0px 10px;
+  height: 35px;
+  border-radius: 3px;
+  width: 20rem;
+  color: rgb(156, 156, 156);
+  border: 1px solid rgb(156, 156, 156);
+`
+
 export default function Filters({ data }) {
-    const { activeFilter, toggleActiveFilter, activeCuisines, toggleCuisines } = useFilters();
+    const { activeFilter, toggleActiveFilter, setTextFilter, activeCuisines, toggleCuisines } = useFilters();
     const [availableCuisines, setCuisines] = useState([]);
 
     const filtersAvailable = [
@@ -81,13 +96,17 @@ export default function Filters({ data }) {
                         properties={properties}
                     />
                 ))}
+
+                <SearchFilterContainer>
+                    <SearchFilter type="text" placeholder="Enter Place Name or Cuisine Name" onChange={(e) => setTextFilter(e.target.value)} />
+                </SearchFilterContainer>
             </FiltersContainer>
 
             <Heading>Available Cuisines</Heading>
 
             <CuisinesContainer>
                 {availableCuisines.map((cuisine) => (
-                    <Cuisines cuisine={cuisine} isActive={activeCuisines[cuisine] === true} toggleCuisines={toggleCuisines} />
+                    <Cuisines key={cuisine} cuisine={cuisine} isActive={activeCuisines[cuisine] === true} toggleCuisines={toggleCuisines} />
                 ))}
             </CuisinesContainer>
         </Container>

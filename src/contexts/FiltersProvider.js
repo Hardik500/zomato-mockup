@@ -7,6 +7,7 @@ const FilterProvider = ({ children }) => {
 
     const [activeFilter, setActiveFilter] = useState(null);
     const [activeCuisines, setActiveCuisines] = useState({});
+    const [textFilter, setTextFilter] = useState('');
 
     const toggleActiveFilter = (filterName) => {
         if (activeFilter === filterName) {
@@ -31,7 +32,9 @@ const FilterProvider = ({ children }) => {
             activeFilter,
             toggleActiveFilter,
             activeCuisines,
-            toggleCuisines
+            toggleCuisines,
+            textFilter,
+            setTextFilter
         }}>
             {children}
         </FilterContext.Provider>

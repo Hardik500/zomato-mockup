@@ -24,7 +24,7 @@ export default function CuisinesComponent({ cuisines }) {
   return (
     <CuisinesContainer>
       {availableCuisines.map((cuisine) => (
-        <Cuisines cuisine={cuisine} isActive={activeCuisines[cuisine] === true} toggleCuisines={toggleCuisines} />
+        <Cuisines key={cuisine} cuisine={cuisine} isActive={activeCuisines[cuisine] === true} toggleCuisines={toggleCuisines} />
       ))}
     </CuisinesContainer>
   )

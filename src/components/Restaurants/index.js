@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 export default function Restaurants({ data }) {
-    const { activeFilter, activeCuisines } = useFilters();
+    const { activeFilter, activeCuisines, textFilter } = useFilters();
 
 
     const applySorting = useCallback((resturantA, resturantB) => {
@@ -28,14 +28,9 @@ export default function Restaurants({ data }) {
         else if (activeFilter === 'Cost') {
             return resturantB.meta.averageCostForTwo - resturantA.meta.averageCostForTwo
         }
-        else {
-            return resturantA.id - resturantB.id
-        }
     }, [activeFilter])
 
     const applyCuisineFilters = useCallback((resturant) => {
-        console.log(Object.values(activeCuisines))
-
         if (Object.values(activeCuisines).filter(e => e === true).length === 0) {
             return true;
         }
@@ -59,10 +54,25 @@ export default function Restaurants({ data }) {
         else if (activeFilter === 'Available') {
             return resturant.isOpen
         }
-        else {
-            return resturant !== null
-        }
+
+        return resturant !== null
     }, [activeFilter])
+
+    const applyTextFilters = useCallback((resturant) => {
+        if (textFilter !== '') {
+            if (resturant.meta.title.toLocaleLowerCase().includes(textFilter)) {
+                return true;
+            }
+
+            if (resturant.meta.cuisines.toLocaleLowerCase().includes(textFilter)) {
+                return true;
+            }
+
+            return false;
+        }
+
+        return resturant !== null
+    }, [textFilter])
 
     return (
         <Container>
@@ -72,6 +82,7 @@ export default function Restaurants({ data }) {
                     .sort((restaurantA, resturantB) => resturantB.isOpen - restaurantA.isOpen)
                     .filter((restaurant) => applyFilters(restaurant))
                     .filter((restaurant) => applyCuisineFilters(restaurant))
+                    .filter((restaurant) => applyTextFilters(restaurant))
                     .map((properties) => <RestaurantCard key={properties.id} properties={properties} />)
             }
         </Container>

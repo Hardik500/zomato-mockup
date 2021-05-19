@@ -72,8 +72,8 @@ export default function RatingComponent({ numberOfReviews, noOfRating }) {
         <Container>
             <RatingContainer>
                 {
-                    ratingStyles.map((ratingStyle) => (
-                        <RatingStar ratingStyle={ratingStyle}>
+                    ratingStyles.map((ratingStyle, index) => (
+                        <RatingStar key={index} ratingStyle={ratingStyle}>
                             <BsStarFill fill="white" />
                         </RatingStar>
                     ))
