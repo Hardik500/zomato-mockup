@@ -1,6 +1,7 @@
 import mockData from './mockData.json'
 import RestaurantCard from './ResturantCard';
 import styled from "styled-components";
+import { useEffect, useState } from 'react';
 
 const Container = styled.div`
   display: grid;
@@ -12,10 +13,22 @@ const Container = styled.div`
 
 export default function Restaurants() {
 
+    const [restaurantData, setResturantData] = useState(mockData);
+
+    useEffect(() => {
+        let dummyResturantData = restaurantData;
+
+        //Sort by Open
+        dummyResturantData.sort((a, b) => b.isOpen - a.isOpen)
+
+        setResturantData(dummyResturantData)
+
+    }, [])
+
     return (
         <Container>
             {
-                mockData.map((properties) => <RestaurantCard key={properties.id} properties={properties} />)
+                restaurantData.map((properties) => <RestaurantCard key={properties.id} properties={properties} />)
             }
         </Container>
     )
