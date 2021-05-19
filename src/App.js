@@ -5,6 +5,7 @@ import Filters from './components/Filters';
 import Restaurants from './components/Restaurants';
 import AppProvider from './contexts/AppProvider';
 
+
 const Container = styled.div`
   position: relative;
   max-width: 80rem;
@@ -24,6 +25,7 @@ const RestaurantTitle = styled.h1`
 function App() {
 
   const [isLoading, setLoading] = useState(true);
+  const [usersPosition, setUsersPosition] = useState({});
   const [restaurantData, setResturantData] = useState([]);
 
   useEffect(() => {
@@ -38,6 +40,15 @@ function App() {
 
     loadData();
 
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setUsersPosition(
+        {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        },
+      )
+    });
+
   }, [])
 
   if (restaurantData.length === 0 || isLoading) {
@@ -49,7 +60,7 @@ function App() {
       <Container>
         <Filters data={restaurantData} />
         <RestaurantTitle>Akola Restaurants</RestaurantTitle>
-        <Restaurants data={restaurantData} />
+        <Restaurants usersPosition={usersPosition} data={restaurantData} />
       </Container>
     </AppProvider>
   );

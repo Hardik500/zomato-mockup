@@ -1,5 +1,6 @@
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import styled from "styled-components";
+import { getDistance } from 'geolib';
 import RatingComponent from './Rating';
 import CuisinesComponent from './Cuisines';
 import RatesComponent from './Rates';
@@ -45,8 +46,25 @@ const RestaurantTitle = styled.h2`
  margin: 5px 0;
 `
 
-function RestaurantCard({ properties }) {
+function RestaurantCard({ usersPosition, properties }) {
   const { meta, locality, isOpen, userRating } = properties;
+  const [time, setTime] = useState(null);
+
+  useEffect(() => {
+    if (usersPosition.latitude !== undefined) {
+
+      const distanceInM = getDistance(
+        { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
+        { latitude: locality.latitude, longitude: locality.longitude },
+      )
+
+      const distanceInKM = distanceInM / 1000
+      const speed = 5000; //Assume 5000Km/H since distance is HUGE
+      const time = distanceInKM / speed;
+
+      setTime(time);
+    }
+  }, [usersPosition])
 
   return (
     <Container isOpen={isOpen}>
@@ -56,7 +74,7 @@ function RestaurantCard({ properties }) {
       <RestaurantTitle>{meta.title}</RestaurantTitle>
       <RatingComponent numberOfReviews={userRating.numberOfReviews} noOfRating={userRating.aggregateRating} />
       <CuisinesComponent cuisines={meta.cuisines} />
-      <RatesComponent currency={meta.currency} averageCostForTwo={meta.averageCostForTwo} />
+      <RatesComponent currency={meta.currency} averageCostForTwo={meta.averageCostForTwo} time={time} />
     </Container>
   );
 }
