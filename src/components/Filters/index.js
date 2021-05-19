@@ -22,13 +22,11 @@ const Heading = styled.h1`
 const FiltersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  position: sticky;
 `;
 
 const CuisinesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  position: sticky;
 `;
 
 export default function Filters({ data }) {

@@ -6,7 +6,6 @@ import Cuisines from '../Filters/Cuisines';
 const CuisinesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  position: sticky;
 `;
 
 export default function CuisinesComponent({ cuisines }) {
