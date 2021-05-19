@@ -6,6 +6,11 @@ import Cuisines from '../Filters/Cuisines';
 const CuisinesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    margin-top: 15px;
+  }
+
 `;
 
 export default function CuisinesComponent({ cuisines }) {

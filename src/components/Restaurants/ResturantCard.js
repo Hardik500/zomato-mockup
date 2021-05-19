@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const ImageContainer = styled.div`
   height: 20rem;
-  width: 25rem;
+  max-width: 25rem;
   overflow: hidden;
   border-radius: 10px;
 

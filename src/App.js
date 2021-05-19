@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Filters from './components/Filters';
 import Restaurants from './components/Restaurants';
 import AppProvider from './contexts/AppProvider';
+import Loader from './components/Helpers/Loader';
 
 
 const Container = styled.div`
@@ -52,7 +53,7 @@ function App() {
   }, [])
 
   if (restaurantData.length === 0 || isLoading) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   return (
