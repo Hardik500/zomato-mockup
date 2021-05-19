@@ -13,7 +13,12 @@ const Container = styled.div`
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+  }
+
+  @media (max-width: 624px) {
     grid-template-columns: repeat(1, 1fr);
     justify-content: center;
   }

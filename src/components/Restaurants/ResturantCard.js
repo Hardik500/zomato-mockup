@@ -7,7 +7,6 @@ import RatesComponent from './Rates';
 
 const Container = styled.div`
   filter: ${props => !props.isOpen && 'grayscale(100%)'}}
-  margin: 0 10px;
   padding: 10px;
   border: 2px solid #fff;
   transition: all .5s ease;
@@ -15,6 +14,10 @@ const Container = styled.div`
   &:hover {
     border-radius: 10px;
     border: 2px solid #d0474a;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0 10px;
   }
 `;
 
