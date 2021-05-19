@@ -74,7 +74,7 @@ export default function Restaurants({ usersPosition, data }) {
     }, [activeCuisines])
 
     const applyFilters = useCallback((resturant) => {
-        if (activeFilter === FilterTypeEnums['Rating4.0+']) {
+        if (activeFilter === FilterTypeEnums['Rating4+']) {
             return resturant.userRating.aggregateRating >= 4
         }
         else if (activeFilter === FilterTypeEnums['Available']) {
