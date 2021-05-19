@@ -38,12 +38,11 @@ const RestaurantImage = styled.img`
   &:hover {
     transform: scale(1.5);
   }
-
   
 `;
 
 const RestaurantTitle = styled.h2`
- margin: 5px 0;
+ margin: 10px 0;
 `
 
 function RestaurantCard({ usersPosition, properties }) {

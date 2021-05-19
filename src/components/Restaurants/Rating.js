@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BsStarFill } from "react-icons/bs";
 import styled from "styled-components";
+import ReactTooltip from 'react-tooltip';
 
 const Container = styled.div`
   display: flex;
@@ -29,6 +30,10 @@ const ReviewsContainer = styled.div`
   font-size: 17px;
   color: #a1a1a1;
 `;
+
+const ToolTipTheme = styled.span`
+  font-size: 17px;
+`
 
 export default function RatingComponent({ numberOfReviews, noOfRating }) {
     const [ratingStyles, setRatingStyles] = useState([]);
@@ -70,7 +75,7 @@ export default function RatingComponent({ numberOfReviews, noOfRating }) {
 
     return (
         <Container>
-            <RatingContainer>
+            <RatingContainer data-tip="Average Rating" data-for='averageRating'>
                 {
                     ratingStyles.map((ratingStyle, index) => (
                         <RatingStar key={index} ratingStyle={ratingStyle}>
@@ -80,6 +85,10 @@ export default function RatingComponent({ numberOfReviews, noOfRating }) {
                 }
                 <RatingNumber>{noOfRating}</RatingNumber>
             </RatingContainer>
+
+            <ReactTooltip id='averageRating' backgroundColor='#d0474a'>
+                <ToolTipTheme>Average Rating</ToolTipTheme>
+            </ReactTooltip>
 
             <ReviewsContainer>({numberOfReviews} Delivery Reviews)</ReviewsContainer>
         </Container>

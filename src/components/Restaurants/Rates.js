@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ReactTooltip from 'react-tooltip';
 
 const Container = styled.div`
   display: flex;
@@ -19,6 +20,10 @@ const Seperator = styled.div`
   background-color: #696969;
 `;
 
+const ToolTipTheme = styled.span`
+  font-size: 17px;
+`
+
 const DistanceContainer = styled.div``;
 
 export default function RatesComponent({ currency, averageCostForTwo, time }) {
@@ -33,9 +38,13 @@ export default function RatesComponent({ currency, averageCostForTwo, time }) {
       </RatesContainer>
       {timeInMinutes ? <>
         <Seperator />
-        <DistanceContainer>{timeInMinutes} min</DistanceContainer>
+        <DistanceContainer data-tip="This is not wrong, as the speed is 5000Km/hr here 😛" data-for='averageTime'>{timeInMinutes} min</DistanceContainer>
       </>
         : null}
+
+      <ReactTooltip id='averageTime' backgroundColor='#d0474a'>
+        <ToolTipTheme>This is not wrong, as the speed is 5000Km/hr here 😛</ToolTipTheme>
+      </ReactTooltip>
     </Container>
   );
 }

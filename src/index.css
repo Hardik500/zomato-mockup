@@ -4,4 +4,5 @@ body {
   margin: 0;
   font-family: Helvetica;
   color: rgba(45, 45, 45, 1);
+  overflow-x: hidden;
 }
