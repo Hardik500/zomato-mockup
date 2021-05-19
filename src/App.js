@@ -9,7 +9,11 @@ const Container = styled.div`
   position: relative;
   max-width: 80rem;
   max-height: initial;
-  margin: 0px 10px;
+  margin: 0px auto;
+
+  @media (max-width: 768px) {
+    margin: 0px 10px;
+  }
 `
 
 const RestaurantTitle = styled.h1`

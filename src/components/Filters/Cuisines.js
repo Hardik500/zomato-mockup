@@ -32,12 +32,12 @@ const FilterName = styled.div`
 `
 
 export default function Cuisines({ cuisine, toggleCuisines, isActive }) {
-    return (
-        <Container>
-            <FilterProp isActive={isActive} onClick={() => toggleCuisines(cuisine)}>
-                <FilterName>
-                    {cuisine}
-                </FilterName>
-            </FilterProp>
-        </Container>);
+  return (
+    <Container>
+      <FilterProp isActive={isActive} onClick={() => toggleCuisines(cuisine)}>
+        <FilterName>
+          {cuisine}
+        </FilterName>
+      </FilterProp>
+    </Container>);
 }
