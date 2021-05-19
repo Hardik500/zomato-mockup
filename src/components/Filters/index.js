@@ -11,6 +11,10 @@ const Container = styled.div`
   background-color: rgb(255, 255, 255);
   z-index: 2;
   transition: top 0.5s ease-in-out 0s;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export default function Filters() {

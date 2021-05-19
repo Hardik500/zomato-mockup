@@ -5,7 +5,10 @@ const Container = styled.div`
   margin-right: 1.4rem;
   position: relative;
   margin-bottom: 1rem;
-  margin-top: 1rem;
+
+  @media (min-width: 768px) {
+    margin-top: 1rem;
+  }
 `;
 
 const FilterProp = styled.div`
@@ -34,16 +37,16 @@ const FilterName = styled.div`
 `
 
 export default function Filter({ properties }) {
-    return (
-        <Container>
-            <FilterProp>
-                {properties?.icon && <FilterIcon>
-                    {properties?.icon}
-                </FilterIcon>}
+  return (
+    <Container>
+      <FilterProp>
+        {properties?.icon && <FilterIcon>
+          {properties?.icon}
+        </FilterIcon>}
 
-                <FilterName>
-                    {properties.name}
-                </FilterName>
-            </FilterProp>
-        </Container>);
+        <FilterName>
+          {properties.name}
+        </FilterName>
+      </FilterProp>
+    </Container>);
 }

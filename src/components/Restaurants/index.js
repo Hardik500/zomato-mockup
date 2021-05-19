@@ -9,6 +9,11 @@ const Container = styled.div`
   grid-row-gap: 20px;
   padding-top: 1.6rem;
   padding-bottom: 1.6rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(1, 1fr);
+    justify-content: center;
+  }
 `;
 
 export default function Restaurants() {
@@ -19,7 +24,7 @@ export default function Restaurants() {
         let dummyResturantData = restaurantData;
 
         //Sort by Open
-        dummyResturantData.sort((a, b) => b.isOpen - a.isOpen)
+        dummyResturantData.sort((a, b) => a.isOpen - b.isOpen)
 
         setResturantData(dummyResturantData)
 
