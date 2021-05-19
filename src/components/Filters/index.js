@@ -45,7 +45,7 @@ const SearchFilter = styled.input`
 `
 
 export default function Filters({ data }) {
-    const { activeFilter, toggleActiveFilter, setTextFilter, activeCuisines, toggleCuisines } = useFilters();
+    const { activeFilter, toggleActiveFilter, searchFilter, setSearchFilter, activeCuisines, toggleCuisines } = useFilters();
     const [availableCuisines, setCuisines] = useState([]);
 
     const filtersAvailable = [
@@ -98,7 +98,7 @@ export default function Filters({ data }) {
                 ))}
 
                 <SearchFilterContainer>
-                    <SearchFilter type="text" placeholder="Enter Place Name or Cuisine Name" onChange={(e) => setTextFilter(e.target.value)} />
+                    <SearchFilter value={searchFilter} type="text" placeholder="Enter Place Name or Cuisine Name" onChange={(e) => setSearchFilter(e.target.value)} />
                 </SearchFilterContainer>
             </FiltersContainer>
 

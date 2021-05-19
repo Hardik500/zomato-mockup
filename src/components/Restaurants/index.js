@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 export default function Restaurants({ data }) {
-    const { activeFilter, activeCuisines, textFilter } = useFilters();
+    const { activeFilter, activeCuisines, searchFilter } = useFilters();
 
 
     const applySorting = useCallback((resturantA, resturantB) => {
@@ -59,12 +59,12 @@ export default function Restaurants({ data }) {
     }, [activeFilter])
 
     const applyTextFilters = useCallback((resturant) => {
-        if (textFilter !== '') {
-            if (resturant.meta.title.toLocaleLowerCase().includes(textFilter)) {
+        if (searchFilter !== '') {
+            if (resturant.meta.title.toLocaleLowerCase().includes(searchFilter)) {
                 return true;
             }
 
-            if (resturant.meta.cuisines.toLocaleLowerCase().includes(textFilter)) {
+            if (resturant.meta.cuisines.toLocaleLowerCase().includes(searchFilter)) {
                 return true;
             }
 
@@ -72,7 +72,7 @@ export default function Restaurants({ data }) {
         }
 
         return resturant !== null
-    }, [textFilter])
+    }, [searchFilter])
 
     return (
         <Container>

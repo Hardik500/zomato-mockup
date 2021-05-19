@@ -1,13 +1,14 @@
 import React, { useState, createContext, useContext } from "react";
+import usePersistedState from 'use-persisted-state-hook'
 
 const FilterContext = createContext({});
 export const useFilters = () => useContext(FilterContext);
 
 const FilterProvider = ({ children }) => {
 
-    const [activeFilter, setActiveFilter] = useState(null);
-    const [activeCuisines, setActiveCuisines] = useState({});
-    const [textFilter, setTextFilter] = useState('');
+    const [activeFilter, setActiveFilter] = usePersistedState('activeFilter', null);
+    const [activeCuisines, setActiveCuisines] = usePersistedState('activeCuisines', {});
+    const [searchFilter, setSearchFilter] = usePersistedState('searchFilter', '');
 
     const toggleActiveFilter = (filterName) => {
         if (activeFilter === filterName) {
@@ -33,8 +34,8 @@ const FilterProvider = ({ children }) => {
             toggleActiveFilter,
             activeCuisines,
             toggleCuisines,
-            textFilter,
-            setTextFilter
+            searchFilter,
+            setSearchFilter
         }}>
             {children}
         </FilterContext.Provider>
