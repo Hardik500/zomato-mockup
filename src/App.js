@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+
+import styled from 'styled-components';
+import Filters from './components/Filters';
+import Restaurants from './components/Restaurants';
+
+const Container = styled.div`
+  position: relative;
+  max-width: 80rem;
+  max-height: initial;
+  margin: 0px auto;
+`
+
+const RestaurantTitle = styled.h1`
+  margin: 0;
+  font-weight: 600;
+`
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <Filters />
+      <RestaurantTitle>Akola Restaurants</RestaurantTitle>
+      <Restaurants />
+    </Container>
   );
 }
 
