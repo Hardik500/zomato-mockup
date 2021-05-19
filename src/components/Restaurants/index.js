@@ -56,6 +56,9 @@ export default function Restaurants({ data }) {
         if (activeFilter === 'Rating: 4.0+') {
             return resturant.userRating.aggregateRating >= 4
         }
+        else if (activeFilter === 'Available') {
+            return resturant.isOpen
+        }
         else {
             return resturant !== null
         }

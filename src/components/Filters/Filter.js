@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { RiArrowUpDownFill } from "react-icons/ri";
 
 const Container = styled.div`
   flex-shrink: 0;
@@ -40,8 +41,8 @@ export default function Filter({ properties, setActiveFilter, isActive = false }
   return (
     <Container>
       <FilterProp isActive={isActive} onClick={() => setActiveFilter(properties.name)}>
-        {properties?.icon && <FilterIcon>
-          {properties?.icon}
+        {properties?.type === 'Sort' && <FilterIcon>
+          <RiArrowUpDownFill />
         </FilterIcon>}
 
         <FilterName>

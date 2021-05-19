@@ -39,22 +39,19 @@ export default function Filters({ data }) {
             type: "Button",
         },
         {
-            name: "Safe and Hygienic",
+            name: "Available",
             type: "Button",
         },
         {
             name: "Delivery Time",
-            icon: <RiArrowUpDownFill />,
             type: "Sort",
         },
         {
             name: "Rating",
-            icon: <RiArrowUpDownFill />,
             type: "Sort",
         },
         {
             name: "Cost",
-            icon: <RiArrowUpDownFill />,
             type: "Sort",
         },
     ];
