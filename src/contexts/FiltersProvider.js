@@ -6,20 +6,32 @@ export const useFilters = () => useContext(FilterContext);
 const FilterProvider = ({ children }) => {
 
     const [activeFilter, setActiveFilter] = useState(null);
+    const [activeCuisines, setActiveCuisines] = useState({});
 
-    const toggleActiveFilter = (name) => {
-        if (activeFilter === name) {
+    const toggleActiveFilter = (filterName) => {
+        if (activeFilter === filterName) {
             setActiveFilter(null);
         }
         else {
-            setActiveFilter(name);
+            setActiveFilter(filterName);
+        }
+    }
+
+    const toggleCuisines = (cuisineName) => {
+        if (activeCuisines?.[cuisineName] === true) {
+            setActiveCuisines({ ...activeCuisines, [cuisineName]: false })
+        }
+        else {
+            setActiveCuisines({ ...activeCuisines, [cuisineName]: true })
         }
     }
 
     return (
         <FilterContext.Provider value={{
             activeFilter,
-            toggleActiveFilter
+            toggleActiveFilter,
+            activeCuisines,
+            toggleCuisines
         }}>
             {children}
         </FilterContext.Provider>

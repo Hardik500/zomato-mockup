@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 
 import { useFilters } from '../../contexts/FiltersProvider';
 import RestaurantCard from './ResturantCard';
@@ -17,24 +17,9 @@ const Container = styled.div`
   }
 `;
 
-export default function Restaurants() {
+export default function Restaurants({ data }) {
     const { activeFilter } = useFilters();
-    const [isLoading, setLoading] = useState(true);
-    const [restaurantData, setResturantData] = useState([]);
 
-    useEffect(() => {
-        setLoading(true);
-
-        async function loadData() {
-            const response = await fetch('https://evening-forest-39803.herokuapp.com/restaurants')
-            const data = await response.json();
-            setResturantData(data);
-            setLoading(false);
-        }
-
-        loadData();
-
-    }, [])
 
     const applySorting = useCallback((resturantA, resturantB) => {
         if (activeFilter === 'Rating') {
@@ -57,14 +42,10 @@ export default function Restaurants() {
         }
     }, [activeFilter])
 
-    if (restaurantData.length === 0 || isLoading) {
-        return <div>Loading...</div>
-    }
-
     return (
         <Container>
             {
-                restaurantData
+                data
                     .sort((restaurantA, resturantB) => applySorting(restaurantA, resturantB))
                     .sort((restaurantA, resturantB) => resturantB.isOpen - restaurantA.isOpen)
                     .filter((restaurant) => applyFilters(restaurant))
