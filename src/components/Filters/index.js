@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { BsSearch } from 'react-icons/bs';
+
 import Filter from "./Filter";
 import Cuisines from "./Cuisines";
 import { useFilters } from "../../contexts/FiltersProvider";
-import { useEffect, useState } from "react";
 
 const Container = styled.div`
   background-color: rgb(255, 255, 255);
@@ -21,6 +23,7 @@ const Heading = styled.h1`
 const FiltersContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 `;
 
 const CuisinesContainer = styled.div`
@@ -29,19 +32,23 @@ const CuisinesContainer = styled.div`
 `;
 
 const SearchFilterContainer = styled.div`
-  padding: 0px;
   display: flex;
   align-items: center;
+  height: 35px;
+  width: 20rem;
+  border: 1px solid rgb(207, 207, 207);
+  border-radius: 0.4rem;
+  padding: 0px 10px;
 `
 
 const SearchFilter = styled.input`
   font-size: 16px;
   padding: 0px 10px;
-  height: 35px;
-  border-radius: 3px;
-  width: 20rem;
+  width: 100%;
+  height: 100%;
   color: rgb(156, 156, 156);
-  border: 1px solid rgb(156, 156, 156);
+  border: 0px solid;
+  outline: none;
 `
 
 export default function Filters({ data }) {
@@ -98,6 +105,7 @@ export default function Filters({ data }) {
                 ))}
 
                 <SearchFilterContainer>
+                    <BsSearch />
                     <SearchFilter value={searchFilter} type="text" placeholder="Enter Place Name or Cuisine Name" onChange={(e) => setSearchFilter(e.target.value)} />
                 </SearchFilterContainer>
             </FiltersContainer>
