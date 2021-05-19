@@ -42,7 +42,7 @@ export default function Restaurants({ usersPosition, data }) {
 
             return distanceOfA - distanceOfB;
         }
-    }, [activeFilter])
+    }, [usersPosition, activeFilter])
 
     const applyCuisineFilters = useCallback((resturant) => {
         if (Object.values(activeCuisines).filter(e => e === true).length === 0) {
