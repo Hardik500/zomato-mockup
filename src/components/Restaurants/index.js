@@ -26,7 +26,7 @@ export default function Restaurants({ data }) {
             return resturantB.userRating.aggregateRating - resturantA.userRating.aggregateRating
         }
         else if (activeFilter === 'Cost') {
-            return resturantB.meta.averageCostForTwo - resturantA.meta.averageCostForTwo
+            return resturantA.meta.averageCostForTwo - resturantB.meta.averageCostForTwo
         }
     }, [activeFilter])
 
