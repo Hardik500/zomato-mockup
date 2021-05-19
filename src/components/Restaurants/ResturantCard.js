@@ -64,7 +64,7 @@ function RestaurantCard({ usersPosition, properties }) {
 
       setTime(time);
     }
-  }, [usersPosition])
+  }, [usersPosition, locality])
 
   return (
     <Container isOpen={isOpen}>
