@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useCallback } from 'react';
+import { getDistance } from 'geolib';
 
 import { useFilters } from '../../contexts/FiltersProvider';
 import RestaurantCard from './ResturantCard';
@@ -20,13 +21,25 @@ const Container = styled.div`
 export default function Restaurants({ usersPosition, data }) {
     const { activeFilter, activeCuisines, searchFilter } = useFilters();
 
-
     const applySorting = useCallback((resturantA, resturantB) => {
         if (activeFilter === 'Rating') {
             return resturantB.userRating.aggregateRating - resturantA.userRating.aggregateRating
         }
         else if (activeFilter === 'Cost') {
             return resturantA.meta.averageCostForTwo - resturantB.meta.averageCostForTwo
+        }
+        else if (activeFilter === 'Delivery Time') {
+            const distanceOfA = getDistance(
+                { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
+                { latitude: resturantA.locality.latitude, longitude: resturantA.locality.longitude },
+            )
+
+            const distanceOfB = getDistance(
+                { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
+                { latitude: resturantB.locality.latitude, longitude: resturantB.locality.longitude },
+            )
+
+            return distanceOfA - distanceOfB;
         }
     }, [activeFilter])
 
