@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useCallback } from 'react';
 import { getDistance } from 'geolib';
 
+import { FilterTypeEnums } from '../../util/enums';
 import { useFilters } from '../../contexts/FiltersProvider';
 import RestaurantCard from './ResturantCard';
 
@@ -22,13 +23,13 @@ export default function Restaurants({ usersPosition, data }) {
     const { activeFilter, activeCuisines, searchFilter } = useFilters();
 
     const applySorting = useCallback((resturantA, resturantB) => {
-        if (activeFilter === 'Rating') {
+        if (activeFilter === FilterTypeEnums['Rating']) {
             return resturantB.userRating.aggregateRating - resturantA.userRating.aggregateRating
         }
-        else if (activeFilter === 'Cost') {
+        else if (activeFilter === FilterTypeEnums['Cost']) {
             return resturantA.meta.averageCostForTwo - resturantB.meta.averageCostForTwo
         }
-        else if (activeFilter === 'Delivery Time') {
+        else if (activeFilter === FilterTypeEnums['DeliveryTime']) {
             const distanceOfA = getDistance(
                 { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
                 { latitude: resturantA.locality.latitude, longitude: resturantA.locality.longitude },
@@ -61,10 +62,10 @@ export default function Restaurants({ usersPosition, data }) {
     }, [activeCuisines])
 
     const applyFilters = useCallback((resturant) => {
-        if (activeFilter === 'Rating: 4.0+') {
+        if (activeFilter === FilterTypeEnums['Rating4.0+']) {
             return resturant.userRating.aggregateRating >= 4
         }
-        else if (activeFilter === 'Available') {
+        else if (activeFilter === FilterTypeEnums['Available']) {
             return resturant.isOpen
         }
 

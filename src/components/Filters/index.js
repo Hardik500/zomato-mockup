@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { BsSearch } from 'react-icons/bs';
 
+import { FilterTypeEnums } from '../../util/enums';
 import Filter from "./Filter";
 import Cuisines from "./Cuisines";
 import { useFilters } from "../../contexts/FiltersProvider";
@@ -10,6 +11,7 @@ const Container = styled.div`
   background-color: rgb(255, 255, 255);
   z-index: 2;
   transition: top 0.5s ease-in-out 0s;
+  margin-top: 20px;
 
   @media (max-width: 768px) {
     justify-content: center;
@@ -18,6 +20,11 @@ const Container = styled.div`
 
 const Heading = styled.h1`
   font-size: 24px;
+  margin: 0;
+  
+  @media (max-width: 768px) {
+    margin: 20px 0;
+  }
 `
 
 const FiltersContainer = styled.div`
@@ -57,23 +64,23 @@ export default function Filters({ data }) {
 
     const filtersAvailable = [
         {
-            name: "Rating: 4.0+",
+            name: FilterTypeEnums['Rating4+'],
             type: "Button",
         },
         {
-            name: "Available",
+            name: FilterTypeEnums["Available"],
             type: "Button",
         },
         {
-            name: "Delivery Time",
+            name: FilterTypeEnums["DeliveryTime"],
             type: "Sort",
         },
         {
-            name: "Rating",
+            name: FilterTypeEnums["Rating"],
             type: "Sort",
         },
         {
-            name: "Cost",
+            name: FilterTypeEnums["Cost"],
             type: "Sort",
         },
     ];
