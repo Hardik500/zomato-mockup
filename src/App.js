@@ -3,6 +3,7 @@ import './App.css';
 import styled from 'styled-components';
 import Filters from './components/Filters';
 import Restaurants from './components/Restaurants';
+import AppProvider from './contexts/AppProvider';
 
 const Container = styled.div`
   position: relative;
@@ -18,11 +19,13 @@ const RestaurantTitle = styled.h1`
 
 function App() {
   return (
-    <Container>
-      <Filters />
-      <RestaurantTitle>Akola Restaurants</RestaurantTitle>
-      <Restaurants />
-    </Container>
+    <AppProvider>
+      <Container>
+        <Filters />
+        <RestaurantTitle>Akola Restaurants</RestaurantTitle>
+        <Restaurants />
+      </Container>
+    </AppProvider>
   );
 }
 
