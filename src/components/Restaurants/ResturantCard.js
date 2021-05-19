@@ -7,20 +7,38 @@ import RatesComponent from './Rates';
 const Container = styled.div`
   filter: ${props => !props.isOpen && 'grayscale(100%)'}}
   margin: 0 10px;
+  padding: 10px;
+  border: 2px solid #fff;
+  transition: all .5s ease;
+  
+  &:hover {
+    border-radius: 10px;
+    border: 2px solid #d0474a;
+  }
 `;
 
-const ImageContainer = styled.div``;
-
-const RestaurantImage = styled.img`
-  width: 25rem;
+const ImageContainer = styled.div`
   height: 20rem;
+  width: 25rem;
+  overflow: hidden;
   border-radius: 10px;
-  object-fit: cover;
 
   @media (max-width: 768px) {
     width: 22.5rem;
     height: 17.5rem;
   }
+`;
+
+const RestaurantImage = styled.img`
+  max-width: 100%;
+  border-radius: 10px;
+  transition: transform .5s ease;
+
+  &:hover {
+    transform: scale(1.5);
+  }
+
+  
 `;
 
 const RestaurantTitle = styled.h2`
