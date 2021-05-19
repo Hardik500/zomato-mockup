@@ -17,7 +17,7 @@ const Container = styled.div`
   }
 `;
 
-export default function Restaurants({ data }) {
+export default function Restaurants({ usersPosition, data }) {
     const { activeFilter, activeCuisines, searchFilter } = useFilters();
 
 
@@ -60,11 +60,11 @@ export default function Restaurants({ data }) {
 
     const applyTextFilters = useCallback((resturant) => {
         if (searchFilter !== '') {
-            if (resturant.meta.title.toLocaleLowerCase().includes(searchFilter)) {
+            if (resturant.meta.title.toLocaleLowerCase().includes(searchFilter.toLocaleLowerCase())) {
                 return true;
             }
 
-            if (resturant.meta.cuisines.toLocaleLowerCase().includes(searchFilter)) {
+            if (resturant.meta.cuisines.toLocaleLowerCase().includes(searchFilter.toLocaleLowerCase())) {
                 return true;
             }
 
@@ -83,7 +83,7 @@ export default function Restaurants({ data }) {
                     .filter((restaurant) => applyFilters(restaurant))
                     .filter((restaurant) => applyCuisineFilters(restaurant))
                     .filter((restaurant) => applyTextFilters(restaurant))
-                    .map((properties) => <RestaurantCard key={properties.id} properties={properties} />)
+                    .map((properties) => <RestaurantCard key={properties.id} properties={properties} usersPosition={usersPosition} />)
             }
         </Container>
     )

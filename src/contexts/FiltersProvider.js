@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { createContext, useContext } from "react";
 import usePersistedState from 'use-persisted-state-hook'
 
 const FilterContext = createContext({});
