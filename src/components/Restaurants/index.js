@@ -30,17 +30,24 @@ export default function Restaurants({ usersPosition, data }) {
             return resturantA.meta.averageCostForTwo - resturantB.meta.averageCostForTwo
         }
         else if (activeFilter === FilterTypeEnums['DeliveryTime']) {
-            const distanceOfA = getDistance(
-                { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
-                { latitude: resturantA.locality.latitude, longitude: resturantA.locality.longitude },
-            )
+            if (usersPosition?.latitude) {
 
-            const distanceOfB = getDistance(
-                { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
-                { latitude: resturantB.locality.latitude, longitude: resturantB.locality.longitude },
-            )
+                const distanceOfA = getDistance(
+                    { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
+                    { latitude: resturantA.locality.latitude, longitude: resturantA.locality.longitude },
+                )
 
-            return distanceOfA - distanceOfB;
+                const distanceOfB = getDistance(
+                    { latitude: usersPosition.latitude, longitude: usersPosition.longitude },
+                    { latitude: resturantB.locality.latitude, longitude: resturantB.locality.longitude },
+                )
+
+                return distanceOfA - distanceOfB;
+
+            }
+            else {
+                return resturantA.id - resturantB.id;
+            }
         }
     }, [usersPosition, activeFilter])
 
