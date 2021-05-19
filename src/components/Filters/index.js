@@ -1,6 +1,7 @@
 import Filter from "./Filter";
 import { RiArrowUpDownFill } from "react-icons/ri";
 import styled from "styled-components";
+import { useFilters } from "../../contexts/FiltersProvider";
 
 const Container = styled.div`
   display: flex;
@@ -18,6 +19,8 @@ const Container = styled.div`
 `;
 
 export default function Filters() {
+    const { activeFilter, toggleActiveFilter } = useFilters();
+
     const filtersAvailable = [
         {
             name: "Rating: 4.0+",
@@ -34,18 +37,20 @@ export default function Filters() {
         },
         {
             name: "Rating",
-            type: "Range",
+            icon: <RiArrowUpDownFill />,
+            type: "Sort",
         },
         {
             name: "Cost",
-            type: "Range",
+            icon: <RiArrowUpDownFill />,
+            type: "Sort",
         },
     ];
 
     return (
         <Container>
             {filtersAvailable.map((properties) => (
-                <Filter key={properties.name} properties={properties} />
+                <Filter isActive={activeFilter === properties.name} setActiveFilter={toggleActiveFilter} key={properties.name} properties={properties} />
             ))}
         </Container>
     );

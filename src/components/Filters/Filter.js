@@ -12,8 +12,8 @@ const Container = styled.div`
 `;
 
 const FilterProp = styled.div`
-  border: 1px solid rgb(207, 207, 207);
-  color: rgb(156, 156, 156);
+  border: 1px solid ${props => props.isActive ? 'rgb(236, 70, 84)' : 'rgb(207, 207, 207)'};
+  color: ${props => props.isActive ? 'rgb(236, 70, 84)' : 'rgb(156, 156, 156)'};
   box-shadow: rgb(54 54 54 / 6%) 0px 1px 2px;
   border-radius: 0.4rem;
   padding: 0.5rem;
@@ -36,10 +36,10 @@ const FilterIcon = styled.div`
 const FilterName = styled.div`
 `
 
-export default function Filter({ properties }) {
+export default function Filter({ properties, setActiveFilter, isActive = false }) {
   return (
     <Container>
-      <FilterProp>
+      <FilterProp isActive={isActive} onClick={() => setActiveFilter(properties.name)}>
         {properties?.icon && <FilterIcon>
           {properties?.icon}
         </FilterIcon>}

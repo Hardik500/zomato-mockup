@@ -1,4 +1,4 @@
-import { BsStar } from "react-icons/bs";
+import { memo } from 'react';
 import styled from "styled-components";
 import RatingComponent from './Rating';
 import CuisinesComponent from './Cuisines';
@@ -27,10 +27,8 @@ const RestaurantTitle = styled.h2`
  margin: 5px 0;
 `
 
-export default function RestaurantCard({ properties }) {
+function RestaurantCard({ properties }) {
   const { meta, locality, isOpen, userRating } = properties;
-
-  console.log(properties);
 
   return (
     <Container isOpen={isOpen}>
@@ -44,3 +42,7 @@ export default function RestaurantCard({ properties }) {
     </Container>
   );
 }
+
+const MemoizedRocketComponent = memo(RestaurantCard);
+
+export default MemoizedRocketComponent;
